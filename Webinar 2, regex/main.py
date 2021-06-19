@@ -3,8 +3,8 @@ import re
 
 
 def get_contacts():
-    with open("phonebook_raw.csv", encoding='utf-8') as phonebook:
-        rows = csv.reader(phonebook, delimiter=",")
+    with open('phonebook_raw.csv', encoding='utf-8') as phonebook:
+        rows = csv.reader(phonebook, delimiter=',')
         contacts = list(rows)
 
         return contacts
@@ -16,12 +16,12 @@ def fix_contacts(contacts_raw):
     contacts_clean = {}
 
     for contact in contacts_raw:
-        contact_name_raw = ' '.join(contact[0:3]).split(' ')
-        key = (contact_name_raw[0], contact_name_raw[1])
+        contact_name = ' '.join(contact[0:3]).split(' ')
+        key = (contact_name[0], contact_name[1])
         contact_to_append = [
-            contact_name_raw[0],
-            contact_name_raw[1],
-            contact_name_raw[2],
+            contact_name[0],
+            contact_name[1],
+            contact_name[2],
             contact[3],
             contact[4],
             re.sub(pattern, sub, contact[5]).strip(),
@@ -39,7 +39,7 @@ def fix_contacts(contacts_raw):
 
 
 def save_contacts(contacts_clean):
-    with open("phonebook_clean.csv", "w", newline='', encoding='utf-8') as f:
+    with open('phonebook_clean.csv', 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f, delimiter=',')
         writer.writerows(contacts_clean)
 

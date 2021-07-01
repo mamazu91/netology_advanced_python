@@ -1,7 +1,6 @@
-from datetime import datetime
-
-
 def decorator(func):
+    from datetime import datetime
+
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
         with open('task1_log.txt', 'a') as log_file:

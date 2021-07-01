@@ -1,7 +1,6 @@
-from datetime import datetime
-
-
 def decorator(log_path):
+    from datetime import datetime
+
     def __decorator(func):
         def wrapper(*args, **kwargs):
             result = func(*args, **kwargs)

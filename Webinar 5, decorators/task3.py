@@ -27,9 +27,10 @@ def lines_md5_generator(file):
         yield hashlib.md5(line.encode('UTF-8')).hexdigest()
 
 
-def main():
+def task3_main():
     for item in lines_md5_generator('countries.json'):
         print(item)
 
 
-main()
+if __name__ == '__main__':
+    task3_main()

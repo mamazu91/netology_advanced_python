@@ -18,8 +18,9 @@ def decorator(log_path):
 
 
 @decorator(log_path='task2_log.txt')
-def my_func(*args, **kwargs):
+def task2_func(*args, **kwargs):
     return 'This is my function.'
 
 
-my_func(1, 2, 'a', b='test')
+if __name__ == '__main__':
+    task2_func(1, 2, 'a', b='test')

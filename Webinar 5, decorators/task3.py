@@ -2,9 +2,9 @@ from datetime import datetime
 import hashlib
 
 
-def param_decorator(log_path):
+def decorator(log_path):
     def __decorator(func):
-        def new_func(*args, **kwargs):
+        def wrapper(*args, **kwargs):
             result = func(*args, **kwargs)
             with open(log_path, 'a') as log_file:
                 log_file.write(
@@ -13,12 +13,12 @@ def param_decorator(log_path):
                     f"Return value: '{result}'" + '\n')
             return result
 
-        return new_func
+        return wrapper
 
     return __decorator
 
 
-@param_decorator(log_path='task3_log.txt')
+@decorator(log_path='task3_log.txt')
 def lines_md5_generator(file):
     with open(file, 'r') as f:
         lines = f.readlines()
@@ -32,6 +32,6 @@ def main():
         print(item)
 
 
-param_decorator(lines_md5_generator)
+decorator(lines_md5_generator)
 
 main()

@@ -2,7 +2,7 @@ from datetime import datetime
 
 
 def decorator(func):
-    def new_func(*args, **kwargs):
+    def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
         with open('task1_log.txt', 'a') as log_file:
             log_file.write(f"[{datetime.now().strftime('%d.%m.%Y %H:%M:%S')}] Function '{func.__name__}' was called "
@@ -10,7 +10,7 @@ def decorator(func):
                            f"Return value: '{result}'" + '\n')
         return result
 
-    return new_func
+    return wrapper
 
 
 @decorator

@@ -1,9 +1,9 @@
 from datetime import datetime
 
 
-def param_decorator(log_path):
+def decorator(log_path):
     def __decorator(func):
-        def new_func(*args, **kwargs):
+        def wrapper(*args, **kwargs):
             result = func(*args, **kwargs)
             with open(log_path, 'a') as log_file:
                 log_file.write(
@@ -12,14 +12,14 @@ def param_decorator(log_path):
                     f"Return value: '{result}'" + '\n')
             return result
 
-        return new_func
+        return wrapper
 
     return __decorator
 
 
-@param_decorator(log_path='task2_log.txt')
+@decorator(log_path='task2_log.txt')
 def my_func(*args, **kwargs):
     return 'This is my function.'
 
 
-param_decorator(my_func(1, 2, 'a', b='test'))
+decorator(my_func(1, 2, 'a', b='test'))

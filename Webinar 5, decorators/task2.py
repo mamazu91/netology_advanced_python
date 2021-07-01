@@ -22,4 +22,4 @@ def my_func(*args, **kwargs):
     return 'This is my function.'
 
 
-decorator(my_func(1, 2, 'a', b='test'))
+my_func(1, 2, 'a', b='test')

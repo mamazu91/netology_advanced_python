@@ -32,6 +32,4 @@ def main():
         print(item)
 
 
-decorator(lines_md5_generator)
-
 main()

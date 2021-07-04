@@ -5,7 +5,7 @@ import requests
 class TestCreateYaDiskFolder:
 
     def setup_class(self):
-        self.token = 'AQAAAAAkU90yAADLW-sd1mJ9rkqKsb0BqgxXpJs'
+        self.token = 'INSERT_YOUR_TOKEN_HERE'
         self.empty_token = None
         self.get_folder_api = 'https://cloud-api.yandex.net/v1/disk/resources'
         self.params = {

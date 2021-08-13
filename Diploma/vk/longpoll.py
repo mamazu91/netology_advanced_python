@@ -34,7 +34,16 @@ def get_group_token(group_token_file: str) -> Optional[str]:
         return group_token if group_token else None
 
 
+def is_token_valid(token: str) -> Optional[bool]:
+    if token:
+        return len(token) == 85
+
+
 vk_group_token = get_group_token(GROUP_TOKEN_FILE)
+
+if not is_token_valid(vk_group_token):
+    print(f'Group token is invalid.')
+    exit()
 
 if not vk_group_token:
     print(f'Could not find group token in file {GROUP_TOKEN_FILE}.')
@@ -42,11 +51,6 @@ if not vk_group_token:
 
 vk_group = vk_api.VkApi(token=vk_group_token)
 longpoll = vk_api.longpoll.VkLongPoll(vk_group)
-
-
-def is_token_valid(token: str) -> Optional[bool]:
-    if token:
-        return len(token) == 85
 
 
 def send_message(user_id: int, message: str, attachment=None) -> None:
@@ -142,7 +146,7 @@ def send_matches() -> None:
 
                     else:
                         send_message(event.user_id, 'Введен корректный город.')
-                        send_message(event.user_id, 'Введите пол пользователя.')
+                        send_message(event.user_id, 'Введите пол пользователя (м/ж).')
                         user_info['city'] = user_city
                         bot_state = State.SEX_MISSING
 
